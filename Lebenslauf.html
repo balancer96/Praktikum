@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lebenslauf - Yevhenii Popov</title>
+    <style>
+        /* Общие стили из Anschreiben_2.html */
+        body {
+            margin: 0;
+            padding: 20px; /* Симметричные отступы */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0a0a0a;
+            color: #e0e0e0;
+            min-height: 100vh;
+            overflow-x: auto; /* Разрешаем горизонтальную прокрутку если нужно */
+        }
+
+        .document-wrapper {
+            min-height: 100vh;
+            padding: 20px 40px; /* Увеличиваем боковые отступы для A4 формата */
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        .document-container {
+            position: relative;
+            width: 297mm; /* A4 ширина */
+            max-width: calc(100vw - 80px); /* Учитываем отступы */
+            min-height: 100vh; /* A4 высота */
+            margin: 0 auto;
+            background: transparent; /* Убираем темную подложку */
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(139, 92, 246, 0.3);
+            display: flex; /* Используем flexbox для размещения контента и фото */
+            flex-direction: column;
+        }
+
+        /* Фоновый узор из шестиугольников */
+        .hex-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background-image:
+                repeating-linear-gradient(
+                    30deg,
+                    transparent,
+                    transparent 35px,
+                    rgba(139, 92, 246, 0.05) 35px,
+                    rgba(139, 92, 246, 0.05) 70px
+                ),
+                repeating-linear-gradient(
+                    -30deg,
+                    transparent,
+                    transparent 35px,
+                    rgba(236, 72, 153, 0.05) 35px,
+                    rgba(236, 72, 153, 0.05) 70px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 35px,
+                    rgba(139, 92, 246, 0.04) 35px,
+                    rgba(139, 92, 246, 0.04) 70px
+                );
+            pointer-events: none;
+        }
+        /* Слой с фоновым кодом */
+        .code-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.5; /* Уменьшаем контрастность кода */
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 11px;
+            line-height: 1.4;
+            color: transparent;
+            background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            white-space: pre;
+            pointer-events: none;
+            text-shadow: 0 0 3px rgba(139, 92, 246, 0.2), 0 0 6px rgba(236, 72, 153, 0.2); /* Уменьшаем тень текста */
+            z-index: 1;
+        }
+        /* Контейнер фоновых слоев */
+        .background-layers {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        /* Градиентное наложение */
+        .gradient-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background:
+                radial-gradient(ellipse at top left, rgba(139, 92, 246, 0.1) 0%, transparent 60%),
+                radial-gradient(ellipse at bottom right, rgba(236, 72, 153, 0.1) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 2;
+            opacity: 0.8; /* Делаем немного прозрачным */
+        }
+
+        /* Контент */
+        .content,
+        .personal-header {
+            position: relative;
+            z-index: 1;
+            opacity: 0.98; /* Увеличиваем читаемость */
+        }
+        
+        .content {
+            position: relative;
+            padding: 40px 50px; /* Увеличиваем горизонтальные отступы для A4 формата */
+            z-index: 10;
+            flex-grow: 1; /* Позволяет контенту занимать доступное пространство */
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 5px;
+            background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .subtitle {
+            font-size: 1.1em;
+            text-align: center;
+            margin-bottom: 15px;
+            color: #c0c0c0;
+        }
+
+        h2 {
+            font-size: 20px;
+            margin-top: 15px;
+            margin-bottom: 10px;
+            color: #e0e0e0;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        h2:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 20px;
+            background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+            border-radius: 2px;
+        }
+
+        p {
+            margin-bottom: 8px;
+            line-height: 1.6;
+            color: #d0d0d0;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(236, 72, 153, 0.2) 100%);
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        /* Стили для структуры папок */
+        .folder {
+            margin: 10px 0;
+            border-left: 2px solid rgba(139, 92, 246, 0.2);
+            padding-left: 0;
+        }
+
+        .folder-header {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            background: rgba(139, 92, 246, 0.15);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border-radius: 8px;
+            margin-bottom: 5px;
+            cursor: default;
+            position: relative;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .folder-icon {
+            font-family: 'JetBrains Mono', monospace;
+            color: #8b5cf6;
+            margin-right: 8px;
+            font-size: 18px;
+            text-shadow: 0 0 5px rgba(139, 92, 246, 0.5);
+        }
+
+        .folder-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #f0f0f0;
+            text-shadow: 0 0 3px rgba(240, 240, 240, 0.3);
+        }
+
+        .subfolder {
+            margin-left: 20px;
+            margin-bottom: 8px;
+            position: relative;
+        }
+
+        .subfolder::before {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 15px;
+            width: 15px;
+            height: 1px;
+            background: rgba(139, 92, 246, 0.4);
+        }
+
+        .subfolder-header {
+            display: flex;
+            align-items: center;
+            padding: 8px 10px;
+            background: rgba(236, 72, 153, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border-radius: 6px;
+            margin-bottom: 4px;
+            border-left: 3px solid rgba(236, 72, 153, 0.5);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .subfolder-icon {
+            color: #ec4899;
+            margin-right: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            text-shadow: 0 0 5px rgba(236, 72, 153, 0.5);
+        }
+
+        .subfolder-title {
+            font-size: 14px;
+            font-weight: 500;
+            color: #e0e0e0;
+            text-shadow: 0 0 3px rgba(224, 224, 224, 0.3);
+        }
+
+        .file-content {
+            margin-left: 20px;
+            padding: 8px 15px;
+            background: rgba(30, 30, 35, 0.3);
+            backdrop-filter: blur(3px);
+            -webkit-backdrop-filter: blur(3px);
+            border-radius: 6px;
+            border-left: 2px solid rgba(139, 92, 246, 0.3);
+            color: #d0d0d0;
+            font-size: 13px;
+            line-height: 1.6;
+            position: relative;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .file-content::before {
+            content: '';
+            position: absolute;
+            left: -22px;
+            top: 15px;
+            width: 15px;
+            height: 1px;
+            background: rgba(139, 92, 246, 0.3);
+        }
+
+        .file-icon {
+            display: inline-block;
+            color: #8b5cf6;
+            margin-right: 5px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+        }
+
+        .file-list {
+            list-style: none;
+            margin: 5px 0;
+            padding: 0;
+        }
+
+        .file-list li {
+            padding-left: 15px;
+            margin-bottom: 3px;
+            position: relative;
+        }
+
+        .file-list li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #ec4899;
+        }
+
+        .header {
+            display: grid;
+            grid-template-columns: 250px 1fr; /* Увеличиваем ширину фото */
+            gap: 40px; /* Увеличиваем отступ */
+            align-items: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: rgba(30, 30, 35, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px); /* Для Safari 9+ */
+            border-radius: 12px;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            position: relative;
+            z-index: 5;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            opacity: 0.98; /* Увеличиваем читаемость */
+        }
+        
+        .header-info h1 {
+            font-size: 36px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 10px;
+            text-align: center; /* Выравниваем по центру */
+        }
+
+        .header-subtitle {
+            font-size: 18px;
+            color: #a0a0a0;
+            margin-bottom: 20px;
+            text-align: center; /* Выравниваем по центру */
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            text-align: left; /* Контактные данные остаются по левому краю */
+        }
+
+        .personal-info {
+            flex-grow: 1;
+        }
+
+        .personal-info h1 {
+            text-align: left;
+            margin-bottom: 0;
+            font-size: 2.2em;
+        }
+
+        .personal-info .title {
+            text-align: left;
+            font-size: 1.2em;
+            color: #c0c0c0;
+            margin-top: 5px;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 20px;
+            margin-top: 15px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9em;
+            color: #d0d0d0;
+        }
+
+        .contact-icon {
+            color: #8b5cf6;
+            font-size: 1.1em;
+        }
+
+        .photo-container {
+            width: 250px; /* Увеличиваем ширину */
+            height: 300px; /* Увеличиваем высоту */
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            flex-shrink: 0;
+            margin-right: 25px; /* Отступ от текста справа */
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.4), 
+                rgba(255, 255, 255, 0.3), 
+                rgba(139, 92, 246, 0.15), 
+                rgba(236, 72, 153, 0.15));
+            box-shadow: 
+                0 0 40px rgba(255, 255, 255, 0.4),
+                0 0 30px rgba(255, 255, 255, 0.3),
+                0 0 20px rgba(139, 92, 246, 0.25),
+                inset 0 0 25px rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        /* Дополнительный слой для создания плавного перехода */
+        .photo-container::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: radial-gradient(circle at center, 
+                rgba(255, 255, 255, 0.2) 0%, 
+                rgba(255, 255, 255, 0.6) 30%, 
+                rgba(255, 255, 255, 0.8) 60%, 
+                rgba(255, 255, 255, 0.9) 80%,
+                rgba(255, 255, 255, 0.7) 90%,
+                rgba(255, 255, 255, 0.3) 100%);
+            z-index: 2;
+            pointer-events: none;
+            border-radius: 15px;
+            opacity: 0.6;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+        }
+
+        .photo-container::before {
+            content: '';
+            position: absolute;
+            top: -30px;
+            left: -30px;
+            right: -30px;
+            bottom: -30px;
+            background: radial-gradient(circle at center, 
+                rgba(255, 255, 255, 0.9) 0%, 
+                rgba(255, 255, 255, 0.8) 20%,
+                rgba(255, 255, 255, 0.6) 40%,
+                rgba(139, 92, 246, 0.4) 60%, 
+                rgba(236, 72, 153, 0.3) 80%, 
+                rgba(30, 30, 35, 0.2) 100%);
+            z-index: -1;
+            border-radius: 35px;
+            filter: blur(25px);
+            opacity: 0.8;
+        }
+
+        .photo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            border-radius: 12px;
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s ease;
+            box-shadow: 
+                inset 0 0 15px rgba(255, 255, 255, 0.3),
+                0 0 10px rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            mask-image: radial-gradient(ellipse at center, black 60%, transparent 100%);
+            -webkit-mask-image: radial-gradient(ellipse at center, black 60%, transparent 100%);
+        }
+        
+        /* Эффект при наведении для интерактивности */
+        .photo-container:hover img {
+            transform: scale(1.03);
+            filter: brightness(1.1);
+        }
+        
+        .photo-container:hover::after {
+            opacity: 0.8;
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.7);
+        }
+        
+        .photo-container:hover::before {
+            opacity: 0.9;
+            filter: blur(30px);
+        }
+
+        .section-content {
+            padding-left: 20px; /* Отступ для содержимого секций */
+        }
+
+        .tech-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 12px;
+            font-size: 12px;
+            font-family: 'JetBrains Mono', monospace;
+            color: #d0d0d0;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+        
+        /* Skill Category Styles */
+        .skill-category {
+            margin-bottom: 15px;
+        }
+        
+        .skill-category-title {
+            color: #64ffda;
+            font-family: 'Fira Code', monospace;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+        
+        /* Project Item Styles */
+        .project-item {
+            margin-bottom: 20px;
+        }
+        
+        .project-title {
+            font-weight: bold;
+            color: #64ffda;
+            margin-bottom: 5px;
+            font-size: 1rem;
+        }
+        
+        .project-description ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .project-description li {
+            margin-bottom: 5px;
+        }
+        
+        /* Qualification Item Styles */
+        .qualification-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .qualification-icon {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .qualification-text {
+            font-size: 0.9rem;
+        }
+        
+        /* Language Description */
+        .language-description {
+            font-size: 0.8rem;
+            color: #ccc;
+            margin-top: 2px;
+            font-style: italic;
+            width: 183px; /* Увеличенная ширина для размещения текста в одну строку */
+        }
+        
+        /* QR Code Styles */
+        .qr-code-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+        }
+        
+        .qr-code {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 8px;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .qr-code-svg {
+            width: 120px;
+            height: 120px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
+        
+        .qr-code-text {
+            font-size: 0.8rem;
+            color: #64ffda;
+            text-align: center;
+        }
+        
+        /* Языковые навыки */
+        .language-item {
+            margin-bottom: 15px;
+            width: 100%; /* Обеспечивает использование всей доступной ширины */
+        }
+        
+        .language-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+
+        .language-name {
+            font-size: 14px;
+            color: #e0e0e0;
+        }
+
+        .language-level {
+            font-size: 12px;
+            color: #a0a0a0;
+        }
+
+        .language-bar {
+            height: 6px;
+            background: rgba(139, 92, 246, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .language-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #8b5cf6 0%, #ec4899 100%);
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+
+        /* Двухколоночный макет */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 2.5fr; /* Увеличиваем пропорцию правой колонки */
+            gap: 40px; /* Увеличиваем отступ между колонками */
+        }
+
+        /* Левая колонка */
+        .left-column {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        /* Правая колонка */
+        .right-column {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        /* Стили для секций */
+        .section {
+            background: rgba(25, 25, 30, 0.6);
+            backdrop-filter: blur(5px);
+            border-radius: 10px;
+            padding: 20px;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            position: relative;
+            z-index: 5;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            opacity: 0.98; /* Увеличиваем читаемость */
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(139, 92, 246, 0.3);
+        }
+
+        .section-icon {
+            font-size: 20px;
+            color: #8b5cf6;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #f0f0f0;
+        }
+        
+        /* Шкала времени */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #8b5cf6, #ec4899);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -25px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            background: #8b5cf6;
+            border-radius: 50%;
+            border: 3px solid rgba(15, 15, 20, 0.98);
+        }
+
+        .timeline-date {
+            font-size: 12px;
+            color: #ec4899;
+            margin-bottom: 5px;
+        }
+
+        .timeline-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #f0f0f0;
+            margin-bottom: 5px;
+        }
+
+        .timeline-company {
+            font-size: 14px;
+            color: #a0a0a0;
+            margin-bottom: 10px;
+        }
+
+        .timeline-description {
+            font-size: 13px;
+            color: #d0d0d0;
+            line-height: 1.6;
+        }
+
+        .timeline-tasks {
+            list-style: none;
+            margin-top: 10px;
+        }
+
+        .timeline-tasks li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 5px;
+            font-size: 13px;
+            color: #d0d0d0;
+        }
+
+        .timeline-tasks li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #ec4899;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px; /* Уменьшаем отступы для мобильных */
+            }
+            
+            .document-wrapper {
+                padding: 10px 15px; /* Уменьшаем отступы для мобильных */
+            }
+            
+            .document-container {
+                max-width: calc(100vw - 30px); /* Учитываем отступы для мобильных */
+            }
+            
+            .content {
+                padding: 20px 15px; /* Дальнейшее уменьшение отступов для мобильных устройств */
+            }
+            
+            .subfolder, .file-content {
+                margin-left: 10px; /* Дальнейшее уменьшение отступов для мобильных устройств */
+            }
+            
+            .subfolder::before, .file-content::before {
+                left: -10px; /* Дальнейшая корректировка положения для мобильных устройств */
+                width: 10px; /* Дальнейшее уменьшение ширины для мобильных устройств */
+            }
+
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 15px;
+                grid-template-columns: 1fr; /* Одна колонка для мобильных */
+            }
+
+            .photo-container {
+                margin: 15px 0 0 0; /* Отступ сверху для мобильных */
+                width: 150px; /* Уменьшаем для мобильных */
+                height: 180px; /* Уменьшаем для мобильных */
+            }
+
+            .personal-info h1 {
+                font-size: 1.8em;
+            }
+
+            .personal-info .title {
+                font-size: 1em;
+            }
+
+            .contact-details {
+                flex-direction: column;
+                gap: 5px;
+                margin-top: 10px;
+            }
+            
+            .main-content {
+                grid-template-columns: 1fr; /* Одна колонка для мобильных */
+                gap: 20px; /* Уменьшаем отступ для мобильных */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="document-wrapper">
+        <div class="document-container">
+            <!-- Фоновые слои -->
+            <div class="background-layers">
+                <div class="hex-background"></div>
+                <div class="code-background">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+📁 project/
+├── 📁 src/
+│   ├── 📄 main.py
+│   ├── 📄 config.py
+│   └── 📁 modules/
+│       ├── 📄 auth.py
+│       ├── 📄 database.py
+│       └── 📄 api.py
+├── 📁 tests/
+│   └── 📄 test_main.py
+└── 📄 requirements.txt
+
+import os
+import sys
+from typing import Dict, List, Optional
+from datetime import datetime, timedelta
+import json
+import logging
+
+class ConfigManager:
+    def __init__(self, config_path: str = "config.json"):
+        self.config_path = config_path
+        self.config = self._load_config()
+    
+    def _load_config(self) -> Dict:
+        try:
+            with open(self.config_path, 'r') as f:
+                return json.load(f)
+        except FileNotFoundError:
+            return self._get_default_config()
+    
+    def _get_default_config(self) -> Dict:
+        return {
+            "database": {
+                "host": "localhost",
+                "port": 5432,
+                "name": "app_db"
+            },
+            "api": {
+                "host": "0.0.0.0",
+                "port": 8000,
+                "debug": True
+            },
+            "logging": {
+                "level": "INFO",
+                "format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+            }
+        }
+
+class DatabaseConnection:
+    def __init__(self, config: Dict):
+        self.config = config
+        self.connection = None
+        self.cursor = None
+    
+    def connect(self) -> bool:
+        try:
+            import psycopg2
+            self.connection = psycopg2.connect(
+                host=self.config["host"],
+                port=self.config["port"],
+                database=self.config["name"]
+            )
+            self.cursor = self.connection.cursor()
+            logging.info("Database connection established")
+            return True
+        except Exception as e:
+            logging.error(f"Database connection failed: {e}")
+            return False
+    
+    def execute_query(self, query: str, params: tuple = None) -> List:
+        try:
+            self.cursor.execute(query, params)
+            return self.cursor.fetchall()
+        except Exception as e:
+            logging.error(f"Query execution failed: {e}")
+            return []
+    
+    def close(self):
+        if self.cursor:
+            self.cursor.close()
+        if self.connection:
+            self.connection.close()
+
+class AuthenticationService:
+    def __init__(self, db: DatabaseConnection):
+        self.db = db
+        self.secret_key = os.environ.get("SECRET_KEY", "default-secret")
+    
+    def authenticate_user(self, username: str, password: str) -> Optional[str]:
+        query = "SELECT id, password_hash FROM users WHERE username = %s"
+        result = self.db.execute_query(query, (username,))
+        
+        if result and self._verify_password(password, result[0][1]):
+            return self._generate_token(result[0][0])
+        return None
+    
+    def _verify_password(self, password: str, hash_value: str) -> bool:
+        import bcrypt
+        return bcrypt.checkpw(password.encode('utf-8'), hash_value.encode('utf-8'))
+    
+    def _generate_token(self, user_id: int) -> str:
+        import jwt
+        payload = {
+            'user_id': user_id,
+            'exp': datetime.utcnow() + timedelta(hours=24)
+        }
+        return jwt.encode(payload, self.secret_key, algorithm='HS256')
+        
+            
+    def _get_profile(self, data):
+        # This would typically extract user_id from JWT token
+        user_id = data.get("user_id", 1)  # Simplified for demo
+        
+        query = "SELECT username, email, created_at FROM users WHERE id = %s"
+        result = self.db.execute_query(query, (user_id,))
+        
+        if result:
+            user_data = result[0]
+            return {
+                "username": user_data[0],
+                "email": user_data[1],
+                "created_at": user_data[2].isoformat()
+            }
+        else:
+            return {"error": "User not found"}, 404
+    
+    def _update_profile(self, data):
+        user_id = data.get("user_id", 1)
+        email = data.get("email")
+        
+        if not email:
+            return {"error": "Email required"}, 400
+        
+        query = "UPDATE users SET email = %s, updated_at = %s WHERE id = %s"
+        self.db.execute_query(query, (email, datetime.utcnow(), user_id))
+        
+        return {"message": "Profile updated successfully"}
+    
+    def _auth_middleware(self, data):
+        # Simplified authentication middleware
+        token = data.get("authorization", "").replace("Bearer ", "")
+        if token:
+            try:
+                import jwt
+                payload = jwt.decode(token, self.auth_service.secret_key, algorithms=['HS256'])
+                data["user_id"] = payload["user_id"]
+            except:
+                pass
+        return data
+    
+    def _logging_middleware(self, data):
+        self.logger.info(f"Request processed: {data}")
+        return data
+    
+    def start(self):
+        self.logger.info("Starting application...")
+        
+        if not self.db.connect():
+            self.logger.error("Failed to connect to database")
+            return False
+        
+        self.logger.info("Application started successfully")
+        return True
+    
+    def stop(self):
+        self.db.close()
+        self.logger.info("Application stopped")
+
+def main():
+    app = Application()
+    
+    if app.start():
+        try:
+            # Simulate some API calls
+            print("Application running...")
+            print("Available endpoints:")
+            print("- GET /health")
+            print("- POST /auth/login")
+            print("- POST /auth/register")
+            print("- GET /users/profile")
+            print("- PUT /users/profile")
+        except KeyboardInterrupt:
+            print("\nShutting down...")
+        finally:
+            app.stop()
+    else:
+        print("Failed to start application")
+
+if __name__ == "__main__":
+    main()
+                </div>
+                <div class="gradient-overlay"></div>
+            </div>
+
+            <!-- Контент -->
+            <div class="header">
+                <div class="photo-container">
+                    <img src="Heise Leipzig14170.png" alt="Yevhenii Popov">
+                </div>
+                <div class="header-info">
+                    <h1>Yevhenii Popov</h1>
+                    <div class="header-subtitle">Fachinformatiker für Anwendungsentwicklung</div>
+                    <div class="contact-grid">
+                        <div class="contact-item">
+                            <span class="contact-icon">📞</span>
+                            <span>+49 160-930-406-79</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">✉️</span>
+                            <span>balancer96@gmail.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📍</span>
+                            <span>Rathausstraße 80, 04416 Markkleeberg</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">🎂</span>
+                            <span>13.10.1989 in Kiew</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content">
+                <div class="main-content">
+                    <div class="left-column">
+                        <div class="section">
+                            <div class="section-header">
+                                <span class="section-icon">💻</span>
+                                <h2 class="section-title">Technische Skills</h2>
+                            </div>
+                            <div class="section-content">
+                                <div class="skill-category">
+                                    <div class="skill-category-title">// Programmierung</div>
+                                    <div class="tech-stack">
+                                        <span class="tech-badge">Java</span>
+                                        <span class="tech-badge">HTML/CSS</span>
+                                        <span class="tech-badge">JavaScript</span>
+                                        <span class="tech-badge">SQL</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="skill-category">
+                                    <div class="skill-category-title">// KI & Automation</div>
+                                    <div class="tech-stack">
+                                        <span class="tech-badge">Cursor</span>
+                                        <span class="tech-badge">GPT/Claude</span>
+                                        <span class="tech-badge">n8n</span>
+                                        <span class="tech-badge">API</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="skill-category">
+                                    <div class="skill-category-title">// Mobile & Hardware</div>
+                                    <div class="tech-stack">
+                                        <span class="tech-badge">Android</span>
+                                        <span class="tech-badge">APK-Mod</span>
+                                        <span class="tech-badge">ADB</span>
+                                        <span class="tech-badge">Root</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="skill-category">
+                                    <div class="skill-category-title">// Tools & Systeme</div>
+                                    <div class="tech-stack">
+                                        <span class="tech-badge">Git</span>
+                                        <span class="tech-badge">Linux</span>
+                                        <span class="tech-badge">VS Code</span>
+                                        <span class="tech-badge">Eclipse</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="section">
+                            <div class="section-header">
+                                <span class="section-icon">🌐</span>
+                                <h2 class="section-title">Sprachen</h2>
+                            </div>
+                            <div class="section-content">
+                                <div class="language-item">
+                                    <div class="language-header">
+                                        <span class="language-name">Deutsch</span>
+                                        <span class="language-level">B1-B2</span>
+                                    </div>
+                                    <div class="language-bar">
+                                        <div class="language-progress" style="width: 60%"></div>
+                                    </div>
+                                    <div class="language-description">aktiv verbessere ich mein Niveau</div>
+                                </div>
+                                
+                                <div class="language-item">
+                                    <div class="language-header">
+                                        <span class="language-name">Englisch</span>
+                                        <span class="language-level">B2</span>
+                                    </div>
+                                    <div class="language-bar">
+                                        <div class="language-progress" style="width: 70%"></div>
+                                    </div>
+                                    <div class="language-description">Verhandlungssicher</div>
+                                </div>
+                                
+                                <div class="language-item">
+                                    <div class="language-header">
+                                        <span class="language-name">Ukrainisch</span>
+                                        <span class="language-level">Muttersprache</span>
+                                    </div>
+                                    <div class="language-bar">
+                                        <div class="language-progress" style="width: 100%"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="language-item">
+                                    <div class="language-header">
+                                        <span class="language-name">Russisch</span>
+                                        <span class="language-level">Fließend</span>
+                                    </div>
+                                    <div class="language-bar">
+                                        <div class="language-progress" style="width: 95%"></div>
+                                    </div>
+                                    <div class="language-description">zweite Verkehrssprache</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="section">
+                            <div class="section-header">
+                                <span class="section-icon">🎯</span>
+                                <h2 class="section-title">Weitere Qualifikationen</h2>
+                            </div>
+                            <div class="section-content">
+                                <div class="qualification-item">
+                                    <span class="qualification-icon">🚗</span>
+                                    <span class="qualification-text">Führerschein B, C1, C</span>
+                                </div>
+                                <div class="qualification-item">
+                                    <span class="qualification-icon">💡</span>
+                                    <span class="qualification-text">Kritisches Denken</span>
+                                </div>
+                                <div class="qualification-item"                                   <span class="qualification-icon">🤝</span>
+                                    <span class="qualification-text">Teamfähigkeit</span>
+                                </div>
+                                <div class="qualification-item">
+                                    <span class="qualification-icon">🎯</span>
+                                    <span class="qualification-text">Lösungsorientiert</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="section">
+                            <div class="section-header">
+                                <span class="section-icon">📱</span>
+                                <h2 class="section-title">QR Code</h2>
+                            </div>
+                            <div class="section-content qr-code-container">
+                                <div class="qr-code">
+                                    <!-- Здесь будет QR-код, который можно сгенерировать с помощью SVG или использовать изображение -->
+                                    <svg class="qr-code-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                        <!-- Фон QR-кода -->
+                                        <rect x="0" y="0" width="100" height="100" fill="white"/>
+                                        
+                                        <!-- Шаблон QR-кода (упрощенный) -->
+                                        <!-- Рамка -->
+                                        <rect x="10" y="10" width="80" height="80" fill="none" stroke="#333" stroke-width="1"/>
+                                        
+                                        <!-- Маркеры позиционирования -->
+                                        <!-- Верхний левый -->
+                                        <rect x="15" y="15" width="20" height="20" fill="#333"/>
+                                        <rect x="20" y="20" width="10" height="10" fill="white"/>
+                                        <rect x="22" y="22" width="6" height="6" fill="#333"/>
+                                        
+                                        <!-- Верхний правый -->
+                                        <rect x="65" y="15" width="20" height="20" fill="#333"/>
+                                        <rect x="70" y="20" width="10" height="10" fill="white"/>
+                                        <rect x="72" y="22" width="6" height="6" fill="#333"/>
+                                        
+                                        <!-- Нижний левый -->
+                                        <rect x="15" y="65" width="20" height="20" fill="#333"/>
+                                        <rect x="20" y="70" width="10" height="10" fill="white"/>
+                                        <rect x="22" y="72" width="6" height="6" fill="#333"/>
+                                        
+                                        <!-- Данные QR-кода (упрощенный шаблон) -->
+                                        <g fill="#333">
+                                            <!-- Горизонтальные линии данных -->
+                                            <rect x="40" y="15" width="20" height="5" />
+                                            <rect x="45" y="25" width="15" height="5" />
+                                            <rect x="15" y="40" width="25" height="5" />
+                                            <rect x="50" y="40" width="35" height="5" />
+                                            <rect x="25" y="50" width="20" height="5" />
+                                            <rect x="60" y="50" width="25" height="5" />
+                                            <rect x="40" y="60" width="10" height="5" />
+                                            <rect x="60" y="60" width="15" height="5" />
+                                            <rect x="40" y="70" width="20" height="5" />
+                                            <rect x="65" y="70" width="10" height="5" />
+                                            <rect x="40" y="80" width="35" height="5" />
+                                            
+                                            <!-- Вертикальные линии данных -->
+                                            <rect x="40" y="15" width="5" height="20" />
+                                            <rect x="50" y="25" width="5" height="15" />
+                                            <rect x="60" y="15" width="5" height="20" />
+                                            <rect x="70" y="40" width="5" height="25" />
+                                            <rect x="80" y="50" width="5" height="15" />
+                                            <rect x="50" y="60" width="5" height="25" />
+                                            <rect x="60" y="70" width="5" height="15" />
+                                        </g>
+                                    </svg>
+                                    <div class="qr-code-text">Scan für digitale Version</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="right-column">
+                        <div class="section">
+                            <div class="section-header">
+                                <span class="section-icon">🇩🇪</span>
+                                <h2 class="section-title">Ausbildungssuchend in Deutschland</h2>
+                            </div>
+                            <div class="section-content">
+                                <div class="timeline">
+                                    <div class="timeline-item">
+                                        <div class="timeline-date">2022 - 2024</div>
+                                        <div class="timeline-title">Deutschkurs</div>
+                                        <div class="timeline-company">VHS Markkleeberg</div>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="timeline-date">2024 - 2025 (aktuell)</div>
+                                        <div class="timeline-title">Umschulung: Fachinformatiker für Anwendungsentwicklung</div>
+                                        <div class="timeline-company">Cimdata Bildungsakademie GmbH Leipzig</div>
+                                        <div class="timeline-description">Schwerpunkte: Java, OOP, Web-Entwicklung, Datenbanken, Projektmanagement</div>
+                                        <div class="timeline-tasks">
+                                            <ul>
+                                                <li>Praktikum: 27.10.2025 - 20.02.2026</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="section">
+                            <div class="section-header">
+                                <span class="section-icon">💼</span>
+                                <h2 class="section-title">Berufserfahrung</h2>
+                            </div>
+                            <div class="section-content">
+                                <div class="timeline">
+                                    <div class="timeline-item">
+                                        <div class="timeline-date">2020 - 2021</div>
+                                        <div class="timeline-title">Mechaniker für die Reparatur von Einrädern</div>
+                                        <div class="timeline-company">Drive Pro, Kiew</div>
+                                        <div class="timeline-tasks">
+                                            <ul>
+                                                <li>Elektronische Diagnose und Reparatur von Steuerungseinheiten</li>
+                                                <li>Software- und Firmware-Updates</li>
+                                                <li>Qualitätskontrolle und Testverfahren</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="timeline-date">2019 - 2020</div>
+                                        <div class="timeline-title">Spezialist für die Reparatur von Mobiltelefonen</div>
+                                        <div class="timeline-company">Byte, Kiew</div>
+                                        <div class="timeline-tasks">
+                                            <ul>
+                                                <li>Hardware-Diagnose und Komponententausch</li>
+                                                <li>Software-Troubleshooting und Datenrettung</li>
+                                                <li>APK-Modifikationen und System-Optimierung</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="timeline-date">2017 - 2019</div>
+                                        <div class="timeline-title">Installationstechniker für Sicherheitssysteme</div>
+                                        <div class="timeline-company">A1 Security Group, Kiew</div>
+                                        <div class="timeline-tasks">
+                                            <ul>
+                                                <li>Installation und Konfiguration von Überwachungssystemen</li>
+                                                <li>Netzwerkintegration und Systemwartung</li>
+                                                <li>Programmierung von Zentralsteuerungen</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="section">
+                            <div class="section-header">
+                                <span class="section-icon">🎓</span>
+                                <h2 class="section-title">Ausbildung</h2>
+                            </div>
+                            <div class="section-content">
+                                <div class="timeline">
+                                    <div class="timeline-item">
+                                        <div class="timeline-date">2005 - 2009</div>
+                                        <div class="timeline-title">Funktechniker (Junior-Spezialist)</div>
+                                        <div class="timeline-company">Fachkolleg für Informationssysteme und -technologien, Kiew</div>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="timeline-date">1997 - 2006</div>
+                                        <div class="timeline-title">Grundschule und Mittelschule</div>
+                                        <div class="timeline-company">Kiew</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="section">
+                            <div class="section-header">
+                                <span class="section-icon">🚀</span>
+                                <h2 class="section-title">Aktuelle Projekte</h2>
+                            </div>
+                            <div class="section-content">
+                                <div class="project-item">
+                                    <div class="project-title">n8n Automatisierungsplattform</div>
+                                    <div class="project-description">
+                                        <ul>
+                                            <li>Self-hosted auf VPS</li>
+                                            <li>Workflow-Automatisierung für persönliche Aufgaben</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="project-item">
+                                    <div class="project-title">KI-gestützte Entwicklung</div>
+                                    <div class="project-description">
+                                        <ul>
+                                            <li>Cursor + Claude/GPT Integration</li>
+                                            <li>Effiziente Code-Generierung und Problem-Solving</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
