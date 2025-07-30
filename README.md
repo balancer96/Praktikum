@@ -10,16 +10,28 @@ The goal is to present my CV (Lebenslauf) and cover letter (Anschreiben) in a mo
 
 ```
 Praktikum/
-├── Anschreiben.html # Cover letter with my motivation and skills
-├── Lebenslauf.html  # CV (Lebenslauf) with technical skills, experience, and projects
-├── README.md  # This file 😊
+├── Anschreiben.html                # Cover letter with my motivation and skills
+├── Lebenslauf.html                 # CV (Lebenslauf) with technical skills, experience, and projects
+├── README.md                       # This file 😊
 └── images/
-    └── Heise Leipzig14170.png # Profile photo used in documents
+    └── Heise Leipzig14170.png      # Profile photo used in documents
 ```
 
 
-- `Lebenslauf.html` – My CV with interactive design and photo
-- `Anschreiben.html` – My cover letter
-- `images/Heise Leipzig14170.png` – Profile photo
 
-Feel free to view, download, or share these documents.
+## How to View Online (Recommended)
+This repository is hosted on GitHub Pages for easy access:
+- [View CV (Lebenslauf) directly](https://balancer96.github.io/Praktikum/) – Opens the main page with my resume and profile photo.
+- [View Cover Letter (Anschreiben)](https://balancer96.github.io/Praktikum/Anschreiben.html) – Read my motivation letter.
+
+No need to download anything – images load automatically!
+
+## How to View Locally
+- Clone the repository: `git clone https://github.com/balancer96/Praktikum.git`
+- Open `index.html` or `Anschreiben.html` in a web browser.
+- Feel free to download or share these files.
+
+## Contact
+If you're interested in my application, contact me at balancer96@gmail.com or +49 160-930-406-79.
+
+Thank you for considering my application!
