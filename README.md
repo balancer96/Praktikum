@@ -1,19 +1,20 @@
-# Praktikum
+# Praktikum Application Repository
 
-This repository contains my application documents for a practical internship as a Fachinformatiker für Anwendungsentwicklung.
+This repository contains my application documents for a practical internship as a Fachinformatiker für Anwendungsentwicklung (Application Development Specialist). The internship period is from October 27, 2025, to February 20, 2026, as part of my vocational training at Cimdata Bildungsakademie GmbH in Leipzig.
 
 ## Purpose
+The goal is to present my CV (Lebenslauf) and cover letter (Anschreiben) in a modern, web-friendly HTML format. These documents showcase my skills in programming, AI tools, hardware, and problem-solving, drawing from my background as a career changer with experience in electronics, mobile repair, and security systems.
 
-The goal of this repository is to present my CV (Lebenslauf) and cover letter (Anschreiben) in a modern, web-friendly format.  
-I am looking for a practical internship from 27.10.2025 to 20.02.2026 as part of my vocational training.
+## Repository Structure
+
 
 ```
 Praktikum/
-├── Anschreiben.html
-├── Lebenslauf.html
-├── README.md
+├── Anschreiben.html # Cover letter with my motivation and skills
+├── Lebenslauf.html  # CV (Lebenslauf) with technical skills, experience, and projects
+├── README.md  # This file 😊
 └── images/
-    └── Heise Leipzig14170.png
+    └── Heise Leipzig14170.png # Profile photo used in documents
 ```
 
 
