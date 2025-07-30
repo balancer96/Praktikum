@@ -32,6 +32,6 @@ No need to download anything – images load automatically!
 - Feel free to download or share these files.
 
 ## Contact
-If you're interested in my application, contact me at balancer96@gmail.com or +4916093040679.
+If you're interested in my application, contact me at balancer96@gmail.com or +49 160-930-406-79.
 
 Thank you for considering my application!
