@@ -8,7 +8,7 @@ The goal of this repository is to present my CV (Lebenslauf) and cover letter (A
 I am looking for a practical internship from 27.10.2025 to 20.02.2026 as part of my vocational training.
 
 - `index.html` – My CV with interactive design and photo
-- `Anschreiben_2.html` – My cover letter
+- `Anschreiben.html` – My cover letter
 - `images/Heise Leipzig14170.png` – Profile photo
 
 Feel free to view, download, or share these documents.
