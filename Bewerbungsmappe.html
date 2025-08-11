@@ -2899,28 +2899,32 @@ class Logger:
         });
 
         // ==========================================================
-		// UNIFIED CUSTOM CURSOR LOGIC
-		// ==========================================================
-        function updateCursorPosition(x, y) {
+        // CUSTOM CURSOR LOGIC
+        // ==========================================================
+        let cursorX = 0, cursorY = 0;
+        let mouseX = 0, mouseY = 0;
+        const speed = 0.2;
+
+        function animateCursor() {
+            const dx = mouseX - cursorX;
+            const dy = mouseY - cursorY;
+
+            cursorX += dx * speed;
+            cursorY += dy * speed;
+
             if (customCursor) {
-                customCursor.style.left = `${x}px`;
-                customCursor.style.top = `${y}px`;
+                customCursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0)`;
             }
+            
+            requestAnimationFrame(animateCursor);
         }
 
-        // Mouse events for desktop
-        document.addEventListener('mousemove', e => {
-            updateCursorPosition(e.clientX, e.clientY);
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
         });
 
-        // Touch events for mobile & iOS
-        document.addEventListener('touchmove', e => {
-            e.preventDefault();
-            const touch = e.touches[0];
-            updateCursorPosition(touch.clientX, touch.clientY);
-        });
-
-       // Starting cursor animation
+        // Starting cursor animation
         animateCursor();
 
         // Splash animation on click
@@ -2935,6 +2939,7 @@ class Logger:
             splash.addEventListener('animationend', () => {
                 splash.remove();
             }, { once: true });
+        });
     });
 </script>
 </body>
