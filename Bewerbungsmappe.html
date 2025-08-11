@@ -2920,17 +2920,22 @@ class Logger:
             updateCursorPosition(touch.clientX, touch.clientY);
         });
 
+       // Starting cursor animation
+        animateCursor();
+
         // Splash animation on click
-        document.addEventListener('click', e => {
-            if (e.target.closest('.anschreiben-button')) return;
-            
+        document.addEventListener('click', (e) => {
             const splash = document.createElement('div');
-            splash.className = 'splash-effect';
+            splash.classList.add('splash-effect');
             document.body.appendChild(splash);
-			splash.style.left = `${e.clientX + window.scrollX}px`;
-			splash.style.top = `${e.clientY + window.scrollY}px`;
-            setTimeout(() => splash.remove(), 500);
-        });
+
+            splash.style.left = `${e.clientX}px`;
+            splash.style.top = `${e.clientY}px`;
+
+            splash.addEventListener('animationend', () => {
+                splash.remove();
+            }, { once: true });
+		});
     });
 </script>
 </body>
