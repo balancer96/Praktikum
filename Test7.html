@@ -24,7 +24,7 @@
             color: #e0e0e0;
             min-height: 100vh;
             overflow: hidden;
-            cursor: none; /* Hide the default cursor */
+            cursor: none;
         }
 
         .page-break {
@@ -2898,8 +2898,9 @@ class Logger:
             handlePageFlip();
         });
 
-
-        // Универсальная функция обновления позиции
+		// ==========================================================
+		// UNIFIED CUSTOM CURSOR LOGIC
+		// ==========================================================
         function updateCursorPosition(x, y) {
             if (customCursor) {
                 customCursor.style.left = `${x}px`;
@@ -2907,19 +2908,19 @@ class Logger:
             }
         }
 
-        // Обработчик для мыши (десктоп)
+        // Mouse events for desktop
         document.addEventListener('mousemove', e => {
             updateCursorPosition(e.clientX, e.clientY);
         });
 
-        // Обработчик для тача (мобильные, включая iOS)
+        // Touch events for mobile & iOS
         document.addEventListener('touchmove', e => {
             e.preventDefault();
             const touch = e.touches[0];
             updateCursorPosition(touch.clientX, touch.clientY);
         });
 
-        // Splash effect при клике
+        // Splash animation on click
         document.addEventListener('click', e => {
             if (e.target.closest('.anschreiben-button')) return;
             
