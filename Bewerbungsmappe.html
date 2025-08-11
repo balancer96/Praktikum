@@ -2927,8 +2927,8 @@ class Logger:
             const splash = document.createElement('div');
             splash.className = 'splash-effect';
             document.body.appendChild(splash);
-            splash.style.left = `${e.clientX}px`;
-            splash.style.top = `${e.clientY}px`;
+			splash.style.left = `${e.clientX + window.scrollX}px`;
+			splash.style.top = `${e.clientY + window.scrollY}px`;
             setTimeout(() => splash.remove(), 500);
         });
     });
