@@ -24,6 +24,7 @@
             color: #e0e0e0;
             min-height: 100vh;
             overflow: hidden;
+			cursor: none;
         }
 
         .page-break {
@@ -1023,6 +1024,7 @@
         @media (max-width: 768px) {
             body {
                 padding: 10px;
+				cursor: none;
             }
 
             .page-content {
@@ -1105,6 +1107,7 @@
             color: #e0e0e0;
             min-height: 100vh;
             overflow: hidden;
+			cursor: none;
 	        }
 
         :root {
@@ -2896,46 +2899,37 @@ class Logger:
         });
 
         // ==========================================================
-        // CUSTOM CURSOR LOGIC (from your code)
-        // ==========================================================
-        let cursorX = 0, cursorY = 0;
-        let mouseX = 0, mouseY = 0;
-        const speed = 0.2;
-
-        function animateCursor() {
-            const dx = mouseX - cursorX;
-            const dy = mouseY - cursorY;
-
-            cursorX += dx * speed;
-            cursorY += dy * speed;
-
+		// UNIFIED CUSTOM CURSOR LOGIC
+		// ==========================================================
+        function updateCursorPosition(x, y) {
             if (customCursor) {
-                customCursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0)`;
+                customCursor.style.left = `${x}px`;
+                customCursor.style.top = `${y}px`;
             }
-            
-            requestAnimationFrame(animateCursor);
         }
 
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
+        // Mouse events for desktop
+        document.addEventListener('mousemove', e => {
+            updateCursorPosition(e.clientX, e.clientY);
         });
 
-        // Starting cursor animation
-        animateCursor();
+        // Touch events for mobile & iOS
+        document.addEventListener('touchmove', e => {
+            e.preventDefault();
+            const touch = e.touches[0];
+            updateCursorPosition(touch.clientX, touch.clientY);
+        });
 
         // Splash animation on click
-        document.addEventListener('click', (e) => {
+        document.addEventListener('click', e => {
+            if (e.target.closest('.anschreiben-button')) return;
+            
             const splash = document.createElement('div');
-            splash.classList.add('splash-effect');
+            splash.className = 'splash-effect';
             document.body.appendChild(splash);
-
             splash.style.left = `${e.clientX}px`;
             splash.style.top = `${e.clientY}px`;
-
-            splash.addEventListener('animationend', () => {
-                splash.remove();
-            }, { once: true });
+            setTimeout(() => splash.remove(), 500);
         });
     });
 </script>
